@@ -17,16 +17,12 @@ class Doctor
     Appointment.new(date, patient, self)
   end
   
-  def appointments 
-    Appointment.all.select do |appointment|
-      appointment.doctor == self
-    end
+  def appointments
+    Appointment.all.select { |appointment| appointment.doctor == self }
   end
 
   def patients
-    @appointments.collect do |appointment|
-      appointment.patient
-    end
+    appointments.map(&:patient)
   end
   
 end
